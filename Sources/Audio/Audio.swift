@@ -1,8 +1,10 @@
 import AVFoundation
 import SwiftySound
 
+/// The easiest way to play audio in Swift
 public final class Audio {
 	/// The shared `Audio` instance.
+	///
 	/// If you try to play audio at the same time on this instance, one will stop and the other will play.
 	/// You need to create other `Audio` instances if you want a separate environment for each instance.
 	public static let shared = Audio()
@@ -11,6 +13,12 @@ public final class Audio {
 	
 	private var localCache = [URL: Data]()
 	private var networkCache = [URL: Data]()
+	
+	/// Create a new `Audio` instance.
+	///
+	/// Two different `Audio` instances playing audio at the same time will play over each other.
+	/// If you try to play multiple things at once with a single `Audio` instance, the first one will be stopped before the second one plays.
+	public init() {}
 	
 	public var isPlaying: Bool {
 		player?.isPlaying ?? false
