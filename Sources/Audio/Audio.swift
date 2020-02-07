@@ -1,5 +1,4 @@
 import AVFoundation
-import SwiftySound
 
 /// The easiest way to play audio in Swift
 public final class Audio {
@@ -26,7 +25,7 @@ public final class Audio {
 	
 	@discardableResult
 	public func resume() -> Self {
-		player?.resume()
+		player?.play()
 		return self
 	}
 	
@@ -382,14 +381,7 @@ public final class Audio {
 			stop()
 			player = newPlayer
 			
-			let didSucceed = newPlayer.play(numberOfLoops: 0) {
-				guard $0 else { return }
-				completion?(nil)
-			}
-			
-			if !didSucceed {
-				completion?(nil) // TODO: Pass in error
-			}
+			newPlayer.play(completion: completion)
 		} catch {
 			completion?(error)
 		}
