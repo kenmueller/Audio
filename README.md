@@ -41,6 +41,10 @@ Audio.shared.play(urls: [
 ```
 
 ```swift
+// Create a new Audio environment.
+// If you try to play audio at the same time in the same environment,
+// the first one stops and the second one starts.
+// In different environments, they play over each other.
 let myAudio = Audio()
 
 myAudio.play(fileNamed: "beep.wav")
