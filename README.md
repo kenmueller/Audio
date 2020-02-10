@@ -14,28 +14,28 @@
 
 ```swift
 Audio.shared.play(url: "https://www.soundjay.com/button/beep-01a.wav") { error in
-	if let error = error {
-		print("An error occurred: \(error)")
-	} else {
-		print("Done!")
-	}
+    if let error = error {
+        print("An error occurred: \(error)")
+    } else {
+        print("Done!")
+    }
 }
 ```
 
 ```swift
 // Plays in sequence
 Audio.shared.play(urls: [
-	"https://www.soundjay.com/button/beep-01a.wav", // Plays this first
-	"https://www.soundjay.com/button/beep-01a.wav", // Plays this second
-	"https://www.soundjay.com/button/beep-01a.wav" // Plays this third
+    "https://www.soundjay.com/button/beep-01a.wav", // Plays this first
+    "https://www.soundjay.com/button/beep-01a.wav", // Plays this second
+    "https://www.soundjay.com/button/beep-01a.wav" // Plays this third
 ]) { finished, error in
-	if finished {
-		print("All done!")
-	} else if let error = error {
-		print("An error occurred: \(error)")
-	} else {
-		print("On to the next audio URL!")
-	}
+    if finished {
+        print("All done!")
+    } else if let error = error {
+        print("An error occurred: \(error)")
+    } else {
+        print("On to the next audio URL!")
+    }
 }
 ```
 
