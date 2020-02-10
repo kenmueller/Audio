@@ -4,16 +4,16 @@ import AVFoundation
 public final class Audio {
 	/// An error that can be thrown while playing audio
 	public enum Error: LocalizedError {
-		case playbackError(String)
-		case unknownPlaybackError
+		case decodingError(message: String? = nil)
+		case playbackError(message: String? = nil)
 		case invalidUrl
 		
 		public var localizedDescription: String {
 			switch self {
-			case let .playbackError(message):
-				return message
-			case .unknownPlaybackError:
-				return "An unknown playback error occurred"
+			case let .decodingError(message: message):
+				return message ?? "An unknown decoding error occurred"
+			case let .playbackError(message: message):
+				return message ?? "An unknown playback error occurred"
 			case .invalidUrl:
 				return "Invalid audio URL"
 			}
@@ -145,7 +145,7 @@ public final class Audio {
 			cache[url] = data
 			play(data: data, completion: completion)
 		} catch {
-			completion?(.playbackError(error.localizedDescription))
+			completion?(.playbackError(message: error.localizedDescription))
 		}
 		
 		return self
@@ -257,7 +257,7 @@ public final class Audio {
 			
 			newPlayer.play(completion: completion)
 		} catch {
-			completion?(.playbackError(error.localizedDescription))
+			completion?(.playbackError(message: error.localizedDescription))
 		}
 		
 		return self

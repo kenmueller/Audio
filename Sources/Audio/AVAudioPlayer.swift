@@ -8,20 +8,22 @@ extension AVAudioPlayer: AVAudioPlayerDelegate {
 		delegate = self
 		
 		guard play() else {
-			completion?(.unknownPlaybackError)
+			completion?(.playbackError())
 			return
 		}
 	}
 	
 	public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
-		(objc_getAssociatedObject(self, &ASSOCIATED_CALLBACK_KEY) as? (Error?) -> Void)?(error)
+		(objc_getAssociatedObject(self, &ASSOCIATED_CALLBACK_KEY) as? (Audio.Error?) -> Void)?(
+			.decodingError(message: error?.localizedDescription)
+		)
 		objc_removeAssociatedObjects(self)
 		delegate = nil
 	}
 	
 	public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 		(objc_getAssociatedObject(self, &ASSOCIATED_CALLBACK_KEY) as? (Audio.Error?) -> Void)?(
-			flag ? nil : .unknownPlaybackError
+			flag ? nil : .playbackError()
 		)
 		objc_removeAssociatedObjects(self)
 		delegate = nil
