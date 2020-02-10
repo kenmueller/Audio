@@ -45,9 +45,8 @@ public extension Audio {
 	
 	// MARK: - vibrate(completion:)
 	
+#if os(iOS)
 	@available(iOS 9.0, *)
-	@available(OSX 10.11, *)
-	@available(tvOS 9.0, *)
 	@discardableResult
 	static func vibrate(completion: (() -> Void)?) -> Audio.Type {
 		play(systemSoundID: kSystemSoundID_Vibrate, as: .alert, completion: completion)
@@ -57,12 +56,12 @@ public extension Audio {
 	static func vibrate() -> Audio.Type {
 		play(systemSoundID: kSystemSoundID_Vibrate, as: .alert)
 	}
+#endif
 	
 	// MARK: - flashScreen(completion:)
 	
-	@available(iOS 9.0, *)
+#if os(macOS)
 	@available(OSX 10.11, *)
-	@available(tvOS 9.0, *)
 	@discardableResult
 	static func flashScreen(completion: (() -> Void)?) -> Audio.Type {
 		play(systemSoundID: kSystemSoundID_FlashScreen, as: .alert, completion: completion)
@@ -72,4 +71,5 @@ public extension Audio {
 	static func flashScreen() -> Audio.Type {
 		play(systemSoundID: kSystemSoundID_FlashScreen, as: .alert)
 	}
+#endif
 }
