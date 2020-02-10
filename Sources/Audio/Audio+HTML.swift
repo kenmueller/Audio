@@ -2,7 +2,7 @@ import Foundation
 
 fileprivate let AUDIO_TAG_REGEX = #"<audio.*?src.*?=.*?["'](.+?)["'].*?>.*?</.*?audio.*?>"#
 
-extension Audio {
+public extension Audio {
 	static func replaceAudioTags(inHTML html: String, with value: String) -> String {
 		html.replacingOccurrences(
 			of: "<audio.*?>.*?</.*?audio.*?>",
