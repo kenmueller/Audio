@@ -12,6 +12,12 @@
 - `play(urls:fromCache:completion:)`
 - `play(data:fromCache:completion:)`
 
+### System sounds
+
+- `Audio.play(systemSoundID:as:completion:)`
+- `Audio.vibrate(completion:)`
+- `Audio.flashScreen(completion:)`
+
 ### HTML
 
 - `Audio.replaceAudioTags(inHTML:with:)`
@@ -83,4 +89,19 @@ let html = """
 Audio.shared.playAll(inHTML: html)
 Audio.shared.playFirst(inHTML: html)
 Audio.shared.playLast(inHTML: html)
+```
+
+```swift
+// Play a key pressed sound
+Audio.play(systemSoundID: 1103) {
+    print("Finished playing sound")
+}
+
+// Vibrate the phone
+Audio.vibrate()
+
+// Flash white on the screen
+Audio.flashScreen {
+    print("That was bright!")
+}
 ```
