@@ -4,11 +4,22 @@
 
 ## Methods
 
+### Main
+
 - `play(fileNamed:fromCache:completion:)`
 - `play(filesNamed:fromCache:completion:)`
 - `play(url:fromCache:completion:)`
 - `play(urls:fromCache:completion:)`
 - `play(data:fromCache:completion:)`
+
+### HTML
+
+- `Audio.replaceAudioTags(inHTML:with:)`
+- `Audio.removeAudioTags(inHTML:)`
+- `Audio.extractUrlsFromAudioTags(inHTML:)`
+- `playAll(inHTML:fromCache:completion:)`
+- `playFirst(inHTML:fromCache:completion:)`
+- `playLast(inHTML:fromCache:completion:)`
 
 ## Examples
 
@@ -55,4 +66,20 @@ myAudio.pause()
 print(myAudio.isPlaying) // false
 
 myAudio.resume()
+```
+
+```swift
+let html = """
+<!DOCTYPE html>
+<html>
+    <body>
+        <audio controls src="https://example.com/audio"></audio>
+        <audio controls src="https://example.com/other-audio"></audio>
+    </body>
+</html>
+"""
+
+Audio.shared.playAll(inHTML: html)
+Audio.shared.playFirst(inHTML: html)
+Audio.shared.playLast(inHTML: html)
 ```

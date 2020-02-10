@@ -7,6 +7,7 @@ public final class Audio {
 		case decodingError(message: String? = nil)
 		case playbackError(message: String? = nil)
 		case invalidUrl
+		case noValidAudioUrlsInHTML
 		
 		public var localizedDescription: String {
 			switch self {
@@ -16,6 +17,8 @@ public final class Audio {
 				return message ?? "An unknown playback error occurred"
 			case .invalidUrl:
 				return "Invalid audio URL"
+			case .noValidAudioUrlsInHTML:
+				return "No valid audio URLs in HTML"
 			}
 		}
 		
@@ -74,7 +77,7 @@ public final class Audio {
 	/// - Parameters:
 	/// 	- fileNamed: The filename you want to play. Do not include folder names.
 	/// 	- fromCache: If the audio is coming from the cache.
-	/// 	- completion: Called when the audio is finished playing. Takes in an optional `Error?`
+	/// 	- completion: Called when the audio is finished playing. Takes in an optional `Audio.Error?`
 	@discardableResult
 	public func play(
 		fileNamed filename: String,
@@ -96,7 +99,7 @@ public final class Audio {
 	/// - Parameters:
 	/// 	- filesNamed: The filenames you want to play in sequence. Do not include folder names.
 	/// 	- fromCache: If the audio is coming from the cache.
-	/// 	- completion: Called when each element is finished playing, and once when they are all finished playing. The first parameter is a `Bool` that indicates if this was the final completion call. The second argument is an `Error?`, and the player will keep playing until the end even if there was an error with one of the elements.
+	/// 	- completion: Called when each element is finished playing, and once when they are all finished playing. The first parameter is a `Bool` that indicates if this was the final completion call. The second argument is an `Audio.Error?`, and the player will keep playing until the end even if there was an error with one of the elements.
 	@discardableResult
 	public func play(
 		filesNamed filenames: [String],
@@ -128,7 +131,7 @@ public final class Audio {
 	/// - Parameters:
 	/// 	- url: The `URL` you want to play.
 	/// 	- fromCache: If the audio is coming from the cache.
-	/// 	- completion: Called when the audio is finished playing. Takes in an optional `Error?`
+	/// 	- completion: Called when the audio is finished playing. Takes in an optional `Audio.Error?`
 	@discardableResult
 	public func play(
 		url: URL,
@@ -156,7 +159,7 @@ public final class Audio {
 	/// - Parameters:
 	/// 	- url: A string representation of the `URL` you want to play.
 	/// 	- fromCache: If the audio is coming from the cache.
-	/// 	- completion: Called when the audio is finished playing. Takes in an optional `Error?`
+	/// 	- completion: Called when the audio is finished playing. Takes in an optional `Audio.Error?`
 	@discardableResult
 	public func play(
 		url: String,
@@ -180,7 +183,7 @@ public final class Audio {
 	/// - Parameters:
 	/// 	- urls: The `URL`s you want to play in sequence.
 	/// 	- fromCache: If the audio is coming from the cache.
-	/// 	- completion: Called when each element is finished playing, and once when they are all finished playing. The first parameter is a `Bool` that indicates if this was the final completion call. The second argument is an `Error?`, and the player will keep playing until the end even if there was an error with one of the elements.
+	/// 	- completion: Called when each element is finished playing, and once when they are all finished playing. The first parameter is a `Bool` that indicates if this was the final completion call. The second argument is an `Audio.Error?`, and the player will keep playing until the end even if there was an error with one of the elements.
 	@discardableResult
 	public func play(
 		urls: [URL],
@@ -210,7 +213,7 @@ public final class Audio {
 	/// - Parameters:
 	/// 	- urls: The `URL` strings you want to play in sequence.
 	/// 	- fromCache: If the audio is coming from the cache.
-	/// 	- completion: Called when each element is finished playing, and once when they are all finished playing. The first parameter is a `Bool` that indicates if this was the final completion call. The second argument is an `Error?`, and the player will keep playing until the end even if there was an error with one of the elements.
+	/// 	- completion: Called when each element is finished playing, and once when they are all finished playing. The first parameter is a `Bool` that indicates if this was the final completion call. The second argument is an `Audio.Error?`, and the player will keep playing until the end even if there was an error with one of the elements.
 	@discardableResult
 	public func play(
 		urls: [String],
@@ -247,7 +250,7 @@ public final class Audio {
 	/// - Parameters:
 	/// 	- data: The `Data` you want to play.
 	/// 	- fromCache: If the audio is coming from the cache.
-	/// 	- completion: Called when the audio is finished playing. Takes in an optional `Error?`
+	/// 	- completion: Called when the audio is finished playing. Takes in an optional `Audio.Error?`
 	@discardableResult
 	public func play(data: Data, completion: ((Error?) -> Void)? = nil) -> Self {
 		do {
@@ -268,7 +271,7 @@ public final class Audio {
 	/// - Parameters:
 	/// 	- data: The `Data` objects you want to play in sequence.
 	/// 	- fromCache: If the audio is coming from the cache.
-	/// 	- completion: Called when each element is finished playing, and once when they are all finished playing. The first parameter is a `Bool` that indicates if this was the final completion call. The second argument is an `Error?`, and the player will keep playing until the end even if there was an error with one of the elements.
+	/// 	- completion: Called when each element is finished playing, and once when they are all finished playing. The first parameter is a `Bool` that indicates if this was the final completion call. The second argument is an `Audio.Error?`, and the player will keep playing until the end even if there was an error with one of the elements.
 	@discardableResult
 	public func play(data: [Data], completion: ((Bool, Error?) -> Void)? = nil) -> Self {
 		guard let dataObject = data.first else {
