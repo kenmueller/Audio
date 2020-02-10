@@ -51,4 +51,14 @@ final class AudioTests: XCTestCase {
 			URL(string: "https://example.com/other-audio")!
 		])
 	}
+	
+	func test_hasValidAudioUrlsFromAudioTags() {
+		XCTAssertTrue(Audio.hasValidAudioUrlsFromAudioTags(inHTML: html))
+		XCTAssertFalse(Audio.hasValidAudioUrlsFromAudioTags(inHTML: """
+		<!DOCTYPE html>
+		<html>
+			<body></body>
+		</html>
+		"""))
+	}
 }

@@ -24,6 +24,10 @@ public extension Audio {
 		}
 	}
 	
+	static func hasValidAudioUrlsFromAudioTags(inHTML html: String) -> Bool {
+		!extractUrlsFromAudioTags(inHTML: html).isEmpty
+	}
+	
 	/// Plays all audio extracted from the `src` properties of `<audio>` HTML tags, in sequence.
 	///
 	/// - Parameters:
