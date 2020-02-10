@@ -17,6 +17,7 @@
 - `Audio.replaceAudioTags(inHTML:with:)`
 - `Audio.removeAudioTags(inHTML:)`
 - `Audio.extractUrlsFromAudioTags(inHTML:)`
+- `Audio.hasValidAudioUrlsFromAudioTags(inHTML:)`
 - `playAll(inHTML:fromCache:completion:)`
 - `playFirst(inHTML:fromCache:completion:)`
 - `playLast(inHTML:fromCache:completion:)`
