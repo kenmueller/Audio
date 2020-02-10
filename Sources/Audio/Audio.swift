@@ -111,7 +111,7 @@ public final class Audio {
 			return self
 		}
 		
-		play(fileNamed: filename, fromCache: fromCache) { error in
+		return play(fileNamed: filename, fromCache: fromCache) { error in
 			completion?(false, error)
 			
 			self.play(
@@ -120,8 +120,6 @@ public final class Audio {
 				completion: completion
 			)
 		}
-		
-		return self
 	}
 	
 	// MARK: - play(url:fromCache:completion:)
@@ -171,9 +169,7 @@ public final class Audio {
 			return self
 		}
 		
-		play(url: url, fromCache: fromCache, completion: completion)
-		
-		return self
+		return play(url: url, fromCache: fromCache, completion: completion)
 	}
 	
 	// MARK: - play(urls:fromCache:completion:)
@@ -195,7 +191,7 @@ public final class Audio {
 			return self
 		}
 		
-		play(url: url, fromCache: fromCache) { error in
+		return play(url: url, fromCache: fromCache) { error in
 			completion?(false, error)
 			
 			self.play(
@@ -204,8 +200,6 @@ public final class Audio {
 				completion: completion
 			)
 		}
-		
-		return self
 	}
 	
 	/// Plays audio in sequence from `URL` strings.
@@ -230,7 +224,7 @@ public final class Audio {
 			return self
 		}
 		
-		play(url: url, fromCache: fromCache) { error in
+		return play(url: url, fromCache: fromCache) { error in
 			completion?(false, error)
 			
 			self.play(
@@ -239,8 +233,6 @@ public final class Audio {
 				completion: completion
 			)
 		}
-		
-		return self
 	}
 	
 	// MARK: - play(data:completion:)
@@ -279,11 +271,9 @@ public final class Audio {
 			return self
 		}
 		
-		play(data: dataObject) { error in
+		return play(data: dataObject) { error in
 			completion?(false, error)
 			self.play(data: .init(data.dropFirst()), completion: completion)
 		}
-		
-		return self
 	}
 }

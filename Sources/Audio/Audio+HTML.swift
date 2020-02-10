@@ -41,8 +41,6 @@ public extension Audio {
 			fromCache: fromCache,
 			completion: completion
 		)
-		
-		return self
 	}
 	
 	/// Plays the first audio `URL` extracted from the `src` property of an `<audio>` HTML tag.
@@ -62,9 +60,7 @@ public extension Audio {
 			return self
 		}
 		
-		play(url: url, fromCache: fromCache, completion: completion)
-		
-		return self
+		return play(url: url, fromCache: fromCache, completion: completion)
 	}
 	
 	/// Plays the last audio `URL` extracted from the `src` property of an `<audio>` HTML tag.
@@ -84,8 +80,6 @@ public extension Audio {
 			return self
 		}
 		
-		play(url: url, fromCache: fromCache, completion: completion)
-		
-		return self
+		return play(url: url, fromCache: fromCache, completion: completion)
 	}
 }
