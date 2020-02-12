@@ -17,6 +17,7 @@
 - `Audio.play(systemSoundID:as:completion:)`
 - `Audio.vibrate(completion:)`
 - `Audio.flashScreen(completion:)`
+- `Audio.impact(style:intensity:)`
 
 ### HTML
 
@@ -104,4 +105,9 @@ Audio.vibrate()
 Audio.flashScreen {
     print("That was bright!")
 }
+
+// Performs an short impact on the iOS device that the user can feel
+Audio.impact()
+Audio.impact(style: .rigid)
+Audio.impact(style: .heavy, intensity: 0.5)
 ```
